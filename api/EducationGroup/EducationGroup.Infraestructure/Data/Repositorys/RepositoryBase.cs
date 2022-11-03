@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EducationGroup.Infraestructure.Data.Repositorys
 {
@@ -32,9 +33,10 @@ namespace EducationGroup.Infraestructure.Data.Repositorys
             return sqlContext.Set<TEntity>().ToList();
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            return sqlContext.Set<TEntity>().Find();
+            //return sqlContext.Set<TEntity>().Find();
+            return await sqlContext.FindAsync<TEntity>(id);
         }
 
         public void Remove(TEntity obj)

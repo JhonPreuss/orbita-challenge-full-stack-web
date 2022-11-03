@@ -1,6 +1,7 @@
 ﻿using EducationGroup.Domain.Core.Interfaces.Repositorys;
 using EducationGroup.Domain.Core.Interfaces.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EducationGroup.Domain.Services
 {
@@ -22,9 +23,9 @@ namespace EducationGroup.Domain.Services
             return repository.GetAll(); 
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            return repository.GetById(id);
+            return await repository.GetById(id);
         }
 
         public void Remove(TEntity obj)

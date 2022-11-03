@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EducationGroup.Domain.Core.Interfaces.Repositorys
 {
@@ -10,6 +11,6 @@ namespace EducationGroup.Domain.Core.Interfaces.Repositorys
         void Update(TEntity obj);
         void Remove(TEntity obj);
         IEnumerable<TEntity> GetAll();//lista de leitura
-        TEntity GetById(int id);
+        Task<TEntity> GetById(int id);
     }
 }

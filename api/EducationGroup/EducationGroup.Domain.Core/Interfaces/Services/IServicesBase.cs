@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EducationGroup.Domain.Core.Interfaces.Services
 {
@@ -8,6 +9,6 @@ namespace EducationGroup.Domain.Core.Interfaces.Services
         void Update(TEntity obj);
         void Remove(TEntity obj);
         IEnumerable<TEntity> GetAll();
-        TEntity GetById(int id);
+        Task<TEntity> GetById(int id);
     }
 }

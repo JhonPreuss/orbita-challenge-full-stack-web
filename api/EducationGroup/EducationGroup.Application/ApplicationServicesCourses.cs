@@ -31,7 +31,7 @@ namespace EducationGroup.Application
 
         public CoursesDto GetById(int id)
         {
-            var courses = servicesCourses.GetById(id);
+            var courses = servicesCourses.GetById(id).Result;
             return mapperCourses.MapperEntityToDto(courses);
         }
 
@@ -44,7 +44,7 @@ namespace EducationGroup.Application
         public void Update(CoursesDto coursesDto)
         {
             var courses = mapperCourses.MapperDtoToEntity(coursesDto);
-            servicesCourses.Remove(courses);
+            servicesCourses.Update(courses);
         }
     }
 }

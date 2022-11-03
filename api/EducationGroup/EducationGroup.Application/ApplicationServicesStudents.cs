@@ -4,6 +4,7 @@ using EducationGroup.Application.Interfaces.Mappers;
 using EducationGroup.Domain.Core.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EducationGroup.Application
 {
@@ -31,9 +32,9 @@ namespace EducationGroup.Application
             return mapperStudents.MapperListStudentsDto(students);
         }
 
-        public StudentsDto GetById(int id)
+        public async Task<StudentsDto> GetById(int id)
         {
-            var students = serviceStudents.GetById(id);
+            var students = await serviceStudents.GetById(id);
             return mapperStudents.MapperEntityToDto(students);
         }
 
@@ -46,7 +47,7 @@ namespace EducationGroup.Application
         public void Update(StudentsDto studentsDto)
         {
             var students = mapperStudents.MapperDtoToEntity(studentsDto);
-            serviceStudents.Remove(students);
+            serviceStudents.Update(students);
         }
     }
 }

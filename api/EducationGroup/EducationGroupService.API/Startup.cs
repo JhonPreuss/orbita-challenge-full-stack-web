@@ -24,7 +24,20 @@ namespace EducationGroupService.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //conexao com banco 
+            //cors
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost")
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
+            //conexão com banco 
             var connection = Configuration["SqlConnection:SqlConnectionString"];
             services.AddDbContext<SqlContext>(options => options.UseMySql(connection));
             services.AddControllers();
@@ -40,11 +53,12 @@ namespace EducationGroupService.API
 
         }
 
-        //configuracao do container de injecao de dependencia
+        //configuraçaõ do container de injeção de dependencia
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new ModuleIOC());
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,6 +68,7 @@ namespace EducationGroupService.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
             app.UseSwagger();
             app.UseSwaggerUI(x =>
             {

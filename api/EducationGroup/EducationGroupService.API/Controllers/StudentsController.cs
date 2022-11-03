@@ -2,8 +2,8 @@
 using EducationGroup.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EducationGroupService.API.Controllers
 {
@@ -26,9 +26,11 @@ namespace EducationGroupService.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return Ok(_applicationServicesStudents.GetById(id));
+            var x = await _applicationServicesStudents.GetById(id);
+            return Ok(x);
+
         }
 
         [HttpPost]
@@ -49,7 +51,7 @@ namespace EducationGroupService.API.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] StudentsDto studentsDto)
+        public ActionResult Put(int id, [FromBody] StudentsDto studentsDto)
         {
             try
             {
@@ -82,9 +84,5 @@ namespace EducationGroupService.API.Controllers
                 throw ex;
             }
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
     }
 }

@@ -1,5 +1,6 @@
 ﻿using EducationGroup.Application.Dtos;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EducationGroup.Application.Interfaces
 {
@@ -9,6 +10,7 @@ namespace EducationGroup.Application.Interfaces
         void Update(StudentsDto studentsDto);
         void Remove(StudentsDto studentsDto);
         IEnumerable<StudentsDto> GetAll();
-        StudentsDto GetById(int id);
+        Task<StudentsDto> GetById(int id);
     }
 }
+
